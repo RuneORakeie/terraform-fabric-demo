@@ -28,7 +28,7 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_USE_OIDC: true
-      WORKING_DIRECTORY: "./tf_restore"
+      WORKING_DIRECTORY: "./tf"
 
     steps:
     # Checkout the repository to the GitHub Actions runner
