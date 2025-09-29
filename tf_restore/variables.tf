@@ -17,7 +17,7 @@ variable "client_id" {
   sensitive   = true
   # Will read from TF_VAR_client_id environment variable
 }
-variable "client_secret" {
+variable "arm_client_secret" {
   description = "Azure client secret"
   type        = string
   sensitive   = true

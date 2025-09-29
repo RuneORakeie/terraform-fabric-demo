@@ -43,7 +43,7 @@ data "http" "azure_token" {
     "Content-Type" = "application/x-www-form-urlencoded"
   }
   # Form-encoded body with OAuth2 parameters
-  request_body = "grant_type=client_credentials&client_id=${var.client_id}&client_secret=${var.client_secret}&scope=https://api.fabric.microsoft.com/.default"
+  request_body = "grant_type=client_credentials&client_id=${var.client_id}&client_secret=${var.arm_client_secret}&scope=https://api.fabric.microsoft.com/.default"
 }
 
 # locals {

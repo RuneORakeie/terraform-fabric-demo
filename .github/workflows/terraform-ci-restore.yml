@@ -24,7 +24,6 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-      TF_VAR_client_secret: ${{ secrets.FABRIC_CLIENT_SECRET }}
       ARM_USE_OIDC: true
       WORKING_DIRECTORY: "./tf_restore"
 
@@ -55,7 +54,6 @@ jobs:
          client_id = "${{ secrets.FABRIC_CLIENT_ID }}"
          admin_user = "${{ secrets.ADMIN_USER }}"
          azeventhub_saskey = "${{ secrets.AZURE_EVENTHUB_KEY }}"
-
-#         arm_client_secret = "${{ secrets.FABRIC_CLIENT_SECRET }}"
+         arm_client_secret = "${{ secrets.FABRIC_CLIENT_SECRET }}"
 
   
