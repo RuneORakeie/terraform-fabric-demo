@@ -46,7 +46,6 @@ data "http" "azure_token" {
   request_body = "grant_type=client_credentials&client_id=${var.client_id}&client_secret=${var.client_secret}&scope=https://api.fabric.microsoft.com/.default"
 }
 
-
 # locals {
 #   is_github_actions = fileexists("/github/workspace")
 #   gha_oidc_token    = local.is_github_actions ? coalesce(nonsensitive(sensitive(coalesce(getenv("ACTIONS_ID_TOKEN_REQUEST_TOKEN"), ""))), "") : ""
