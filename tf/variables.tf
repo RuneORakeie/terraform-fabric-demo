@@ -1,9 +1,3 @@
-variable "location" {
-  description = "Location of the Azure resources"
-  type        = string
-  default     = "westeurope"
-}
-
 variable "fabric_capacity_sku" {
   description = "Fabric Capacity SKU name"
   type        = string
@@ -66,4 +60,3 @@ variable "solution_name" {
   type        = string
   default     = "tffabricdemo"
 }
-
