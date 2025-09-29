@@ -1,0 +1,58 @@
+name: Terraform CI
+
+on:
+  push:
+    branches-ignore: [ main ]
+    paths:
+      - 'tf/**'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform CI'
+    runs-on: ubuntu-latest
+    environment: demo
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      FABRIC_TENANT_ID: ${{ secrets.FABRIC_TENANT_ID }}
+      FABRIC_CLIENT_ID: ${{ secrets.FABRIC_CLIENT_ID }}
+      FABRIC_USE_OIDC: ${{ vars.FABRIC_USE_OIDC }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_USE_OIDC: true
+      WORKING_DIRECTORY: "./tf"
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    # Run tflint for Terraform linting
+    - name: Setup TFLint
+      uses: terraform-linters/setup-tflint@v4
+      with:
+        tflint_version: latest
+
+    - name: Run TFLint
+      run: |
+        tflint --init --config=tflint_config.hcl
+        tflint --chdir=${{ env.WORKING_DIRECTORY }} --minimum-failure-severity=error -f compact
+   
+    # Execute Terraform plan (handles init internally)
+    - name: Terraform Plan
+      uses: dflook/terraform-plan@v1
+      with:
+        path: '${{ env.WORKING_DIRECTORY }}'
+        backend_config: "resource_group_name=${{ vars.TERRAFORM_BACKEND_RG_ORG }} storage_account_name=${{ vars.TERRAFORM_BACKEND_SA_ORG }} container_name=${{ vars.TERRAFORM_BACKEND_CONTAINER }} key=${{ vars.TERRAFORM_BACKEND_KEY_ORG }}"
+        variables: |
+         tenant_id = "${{ secrets.FABRIC_TENANT_ID }}"
+         client_id = "${{ secrets.FABRIC_CLIENT_ID }}"
+         arm_client_secret = "${{ secrets.FABRIC_CLIENT_SECRET }}"
+         admin_user = "${{ secrets.ADMIN_USER }}"
+         azeventhub_saskey = "${{ secrets.AZURE_EVENTHUB_KEY }}"
+        
+  
