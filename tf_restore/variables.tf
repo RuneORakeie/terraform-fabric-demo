@@ -33,6 +33,7 @@ variable "admin_user" {
   sensitive   = true
   # Will read from TF_VAR_admin_user environment variable
 }
+
 # variable "admin_user2" {
 #   description = "MS Fabric admin user"
 #   type        = string
