@@ -1,9 +1,4 @@
-variable "location" {
-  description = "Location of the Azure resources"
-  type        = string
-  default     = "westeurope"
-}
-
+# Variables for the MS Fabric deployment
 variable "fabric_capacity_sku" {
   description = "Fabric Capacity SKU name"
   type        = string
