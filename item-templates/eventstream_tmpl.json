@@ -1,0 +1,241 @@
+{
+  "sources": [
+    {
+      "id": "ada90f87-206b-48d3-bd70-4882b53d06d7",
+      "name": "AzureEventHub",
+      "type": "AzureEventHub",
+      "properties": {
+        "dataConnectionId": "{{ .ConnId }}",
+        "consumerGroupName": "$Default",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "id": "0c92706a-b1a5-46f2-984e-89c9b69f1dcf",
+      "name": "TF-Demo-EH",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "ProcessedIngestion",
+        "workspaceId": "{{ .WsId }}",
+        "itemId": "{{ .KqlDbId }}",
+        "databaseName": "{{ .KqlDbName }}",
+        "tableName": "Sensor",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "ManageFields"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "ManageFields",
+          "schema": {
+            "columns": [
+              {
+                "name": "deviceId",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "temperature",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "humidity",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "EventProcessedUtcTime",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "PartitionId",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "EventEnqueuedUtcTime",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "eed30f54-fe2f-4a48-a610-f2db8c70da1b",
+      "name": "kql-es-tf-demo-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "AzureEventHub"
+        }
+      ]
+    }
+  ],
+  "operators": [
+    {
+      "name": "ManageFields",
+      "type": "ManageFields",
+      "inputNodes": [
+        {
+          "name": "kql-es-tf-demo-stream"
+        }
+      ],
+      "properties": {
+        "columns": [
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "deviceId",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "deviceId"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "temperature",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "temperature"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "humidity",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "humidity"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "EventProcessedUtcTime",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "EventProcessedUtcTime"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "PartitionId",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "PartitionId"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "EventEnqueuedUtcTime",
+                "columnPathSegments": []
+              }
+            },
+            "alias": "EventEnqueuedUtcTime"
+          }
+        ]
+      },
+      "inputSchemas": [
+        {
+          "name": "kql-es-tf-demo-stream",
+          "schema": {
+            "columns": [
+              {
+                "name": "messageId",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "deviceId",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "temperature",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "humidity",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "EventProcessedUtcTime",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "PartitionId",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "EventEnqueuedUtcTime",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "compatibilityLevel": "1.0"
+}

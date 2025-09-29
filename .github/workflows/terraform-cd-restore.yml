@@ -1,0 +1,77 @@
+name: Terraform CD - Restore
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [ main ]
+    paths:
+      - 'tf_restore/**'
+
+permissions:
+  issues: write
+  pull-requests: write
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform CD - Restore'
+    runs-on: ubuntu-latest
+    environment: demo
+    if: github.event.pull_request.merged == true
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      FABRIC_TENANT_ID: ${{ secrets.FABRIC_TENANT_ID }}
+      FABRIC_CLIENT_ID: ${{ secrets.FABRIC_CLIENT_ID }}
+      FABRIC_CLIENT_SECRET: ${{ secrets.FABRIC_CLIENT_SECRET }}
+      FABRIC_USE_OIDC: ${{ vars.FABRIC_USE_OIDC }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_USE_OIDC: true
+      WORKING_DIRECTORY: "./tf_restore"
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # Execute Terraform apply (handles init internally)
+    - name: Terraform Apply
+      uses: dflook/terraform-apply@v1
+      with:
+        path: '${{ env.WORKING_DIRECTORY }}'
+        backend_config: "resource_group_name=${{ vars.TERRAFORM_BACKEND_RG_RESTORE }} storage_account_name=${{ vars.TERRAFORM_BACKEND_SA_RESTORE }} container_name=${{ vars.TERRAFORM_BACKEND_CONTAINER }} key=${{ vars.TERRAFORM_BACKEND_KEY_RESTORE }}"
+        variables: |
+         tenant_id = "${{ secrets.FABRIC_TENANT_ID }}"
+         client_id = "${{ secrets.FABRIC_CLIENT_ID }}"
+         client_secret = "${{ secrets.FABRIC_CLIENT_SECRET }}"
+         admin_user = "${{ secrets.ADMIN_USER }}"
+         azeventhub_saskey = "${{ secrets.AZURE_EVENTHUB_KEY }}"
+        auto_approve: true
+          
+
+    # Add PR comment about the apply status
+    - name: Add PR Comment
+      if: success()
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '✅ Terraform apply completed successfully!'
+          })
+
+    - name: Add PR Comment on Failure
+      if: failure()
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '❌ Terraform apply failed. Please check the workflow logs for details.'
+          })

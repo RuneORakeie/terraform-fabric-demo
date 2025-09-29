@@ -1,0 +1,309 @@
+{
+    "$schema": "https://pbiadx.powerbi.com/static/d/schema/60/dashboard.json",
+    "id": "6f0217c7-1bb6-495d-a01d-7f2832affb3d",
+    "eTag": "\"039ebde19cfc446eac1afcaf490ecff6\"",
+    "schema_version": "60",
+    "title": "kql-dash-lasvegas2025",
+    "autoRefresh": {
+        "enabled": true
+    },
+    "tiles": [
+        {
+            "description": "Indicates how much moisture is in the air compared to the maximum amount the air can hold at a given temperature",
+            "id": "e7daa549-bb0d-413c-a0b7-f04f6c256c6d",
+            "layout": {
+                "x": 0,
+                "y": 5,
+                "width": 9,
+                "height": 7
+            },
+            "pageId": "155ddbba-ddb1-4e2d-9ce8-db739f770a7c",
+            "queryRef": {
+                "kind": "query",
+                "queryId": "08cfd8b1-62c0-4146-b0cc-247ca096fad3"
+            },
+            "title": "Humidity (Relative humidity %)",
+            "visualType": "line",
+            "visualOptions": {
+                "crossFilterDisabled": false,
+                "drillthroughDisabled": false,
+                "hideLegend": false,
+                "legendLocation": "bottom",
+                "multipleYAxes": {
+                    "additional": [],
+                    "base": {
+                        "columns": [],
+                        "horizontalLines": [
+                            {
+                                "id": "e1b6b577-2210-4444-a46e-d6dce096a831",
+                                "value": 60
+                            },
+                            {
+                                "id": "ea394f26-b601-4d4a-9bd6-1d3cbb0c6fdb",
+                                "value": 80
+                            }
+                        ],
+                        "id": "-1",
+                        "label": "Relative humidity (%)",
+                        "yAxisMaximumValue": null,
+                        "yAxisMinimumValue": null,
+                        "yAxisScale": "linear"
+                    },
+                    "showMultiplePanels": false
+                },
+                "seriesColumns": null,
+                "verticalLine": "",
+                "xAxisScale": "linear",
+                "xColumn": "EventEnqueuedLocalTime",
+                "xColumnTitle": "",
+                "yColumns": [
+                    "HumidityNumeric"
+                ],
+                "crossFilter": [],
+                "drillthrough": []
+            }
+        },
+        {
+            "id": "b5583cb0-2709-40d6-a107-b632e4733c18",
+            "layout": {
+                "x": 7,
+                "y": 0,
+                "width": 11,
+                "height": 6
+            },
+            "markdownText": "# Environmental Monitoring Dashboard\n",
+            "pageId": "155ddbba-ddb1-4e2d-9ce8-db739f770a7c",
+            "title": "",
+            "visualType": "markdownCard",
+            "visualOptions": {}
+        },
+        {
+            "id": "c523a2c8-ed43-418c-a831-924e356f3643",
+            "layout": {
+                "x": 0,
+                "y": 12,
+                "width": 9,
+                "height": 7
+            },
+            "pageId": "155ddbba-ddb1-4e2d-9ce8-db739f770a7c",
+            "queryRef": {
+                "kind": "query",
+                "queryId": "7762d006-b8d4-43d5-98e5-ac48eab0c8b0"
+            },
+            "title": "Temperature (Celcius)",
+            "visualType": "line",
+            "visualOptions": {
+                "crossFilterDisabled": false,
+                "drillthroughDisabled": false,
+                "hideLegend": false,
+                "legendLocation": "bottom",
+                "multipleYAxes": {
+                    "additional": [],
+                    "base": {
+                        "columns": [],
+                        "horizontalLines": [
+                            {
+                                "id": "e0975d7f-9b46-418a-850d-daa562e45c16",
+                                "value": 30
+                            }
+                        ],
+                        "id": "-1",
+                        "label": "Temperature (Celcius)",
+                        "yAxisMaximumValue": null,
+                        "yAxisMinimumValue": null,
+                        "yAxisScale": "linear"
+                    },
+                    "showMultiplePanels": false
+                },
+                "seriesColumns": [
+                    "deviceId"
+                ],
+                "verticalLine": "",
+                "xAxisScale": "linear",
+                "xColumn": "EventEnqueuedLocalTime",
+                "xColumnTitle": "Time",
+                "yColumns": [
+                    "TemperatureCelcius"
+                ],
+                "crossFilter": [],
+                "drillthrough": []
+            }
+        },
+        {
+            "id": "0c9f4ae9-e11e-4869-84d2-3638875b3101",
+            "layout": {
+                "x": 9,
+                "y": 5,
+                "width": 9,
+                "height": 7
+            },
+            "pageId": "155ddbba-ddb1-4e2d-9ce8-db739f770a7c",
+            "queryRef": {
+                "kind": "query",
+                "queryId": "3ad932ed-35cf-45ab-9bfb-8a3f4396e2d1"
+            },
+            "title": "Processing Delay Analysis by Temperature",
+            "visualType": "scatter",
+            "visualOptions": {
+                "crossFilterDisabled": false,
+                "drillthroughDisabled": false,
+                "hideLegend": false,
+                "legendLocation": "bottom",
+                "multipleYAxes": {
+                    "additional": [],
+                    "base": {
+                        "columns": [],
+                        "horizontalLines": [
+                            {
+                                "id": "da628a78-a4dc-4907-8588-955850eee153",
+                                "value": 200
+                            }
+                        ],
+                        "id": "-1",
+                        "label": "Event Processed Time (ms)",
+                        "yAxisMaximumValue": null,
+                        "yAxisMinimumValue": null,
+                        "yAxisScale": "linear"
+                    },
+                    "showMultiplePanels": false
+                },
+                "seriesColumns": [
+                    "TempSeries"
+                ],
+                "verticalLine": "",
+                "xAxisScale": "linear",
+                "xColumn": "EventEnqueuedLocalTime",
+                "xColumnTitle": "Event Enqueued Time",
+                "yColumns": [
+                    "ProcessingTimeSeconds"
+                ],
+                "crossFilter": [],
+                "drillthrough": []
+            }
+        },
+        {
+            "id": "d45a498f-6e70-4bae-a026-7b3721b00e6b",
+            "layout": {
+                "x": 9,
+                "y": 12,
+                "width": 9,
+                "height": 7
+            },
+            "pageId": "155ddbba-ddb1-4e2d-9ce8-db739f770a7c",
+            "queryRef": {
+                "kind": "query",
+                "queryId": "83c84db0-6ad1-4444-af5e-77304b6163b1"
+            },
+            "title": "Temperature-Humidity Correlation Heatmap",
+            "visualType": "heatmap",
+            "visualOptions": {
+                "heatMap__colorPaletteKey": "blue",
+                "heatMap__dataColumn": null,
+                "xColumn": null,
+                "xColumnTitle": "Humidity Range (%)",
+                "yColumnTitle": "Temperature Range (°C)",
+                "yColumns": null
+            }
+        },
+        {
+            "id": "e55722db-f2bd-4cbd-8003-becee5c09f25",
+            "layout": {
+                "x": 0,
+                "y": 0,
+                "width": 7,
+                "height": 6
+            },
+            "markdownText": "{{ .ImgURL }}",
+            "pageId": "155ddbba-ddb1-4e2d-9ce8-db739f770a7c",
+            "title": "",
+            "visualType": "markdownCard",
+            "visualOptions": {}
+        }
+    ],
+    "baseQueries": [],
+    "parameters": [
+        {
+            "kind": "duration",
+            "id": "16eaaae3-a288-4334-a8ff-529a9ccef539",
+            "displayName": "Time range",
+            "description": "",
+            "beginVariableName": "_startTime",
+            "endVariableName": "_endTime",
+            "defaultValue": {
+                "kind": "dynamic",
+                "count": 1,
+                "unit": "hours"
+            },
+            "showOnPages": {
+                "kind": "all"
+            }
+        }
+    ],
+    "dataSources": [
+        {
+            "clusterUri": "{{ .QuerySvcUri }}",
+            "database": "{{ .KqlDbId }}",
+            "id": "fe927901-de80-4ae7-b39b-c8998558a701",
+            "kind": "kusto-trident",
+            "name": "kql-db-fabricconf2025us-1",
+            "scopeId": "kusto-trident",
+            "workspace": "{{ .WsId }}"
+        }
+    ],
+    "pages": [
+        {
+            "id": "155ddbba-ddb1-4e2d-9ce8-db739f770a7c",
+            "name": "Page 1"
+        }
+    ],
+    "queries": [
+        {
+            "dataSource": {
+                "dataSourceId": "fe927901-de80-4ae7-b39b-c8998558a701",
+                "kind": "inline"
+            },
+            "text": "// Please enter your KQL query (Example):\nSensor\n| where EventEnqueuedUtcTime between (['_startTime'] .. ['_endTime']) // Time range filtering\n| extend \n    HumidityNumeric = todouble(humidity),\n    EventEnqueuedLocalTime = datetime_utc_to_local(EventEnqueuedUtcTime, 'EST')\n| project deviceId, HumidityNumeric, EventEnqueuedLocalTime\n| order by EventEnqueuedLocalTime desc \n| take 200",
+            "id": "08cfd8b1-62c0-4146-b0cc-247ca096fad3",
+            "usedVariables": [
+                "_endTime",
+                "_startTime"
+            ]
+        },
+        {
+            "dataSource": {
+                "dataSourceId": "fe927901-de80-4ae7-b39b-c8998558a701",
+                "kind": "inline"
+            },
+            "text": "Sensor\n| where EventEnqueuedUtcTime between (['_startTime'] .. ['_endTime']) // Time range filtering\n| extend \n    TemperatureCelcius = todouble(temperature),\n    EventEnqueuedLocalTime = datetime_utc_to_local(EventEnqueuedUtcTime, 'EST')\n| project deviceId,TemperatureCelcius,EventEnqueuedLocalTime\n| order by EventEnqueuedLocalTime desc \n| take 200",
+            "id": "7762d006-b8d4-43d5-98e5-ac48eab0c8b0",
+            "usedVariables": [
+                "_endTime",
+                "_startTime"
+            ]
+        },
+        {
+            "dataSource": {
+                "dataSourceId": "fe927901-de80-4ae7-b39b-c8998558a701",
+                "kind": "inline"
+            },
+            "text": "// Please enter your KQL query (Example):\nSensor\n| where EventEnqueuedUtcTime between (['_startTime'] .. ['_endTime']) // Time range filtering\n| extend \n    ProcessingTimeSeconds = datetime_diff('millisecond', EventProcessedUtcTime, EventEnqueuedUtcTime), \n    EventEnqueuedLocalTime = datetime_utc_to_local(EventEnqueuedUtcTime, 'MST'),\n    // Create a series column based on temperature ranges\n    TempSeries = case(\n        todouble(temperature) < 20, \"Low Temp (<20°C)\",\n        todouble(temperature) between (20 .. 25), \"Medium Temp (20-25°C)\",\n        \"High Temp (>25°C)\"\n    )\n| project EventEnqueuedUtcTime,ProcessingTimeSeconds, EventEnqueuedLocalTime,TempSeries\n| order by EventEnqueuedLocalTime desc \n| take 200",
+            "id": "3ad932ed-35cf-45ab-9bfb-8a3f4396e2d1",
+            "usedVariables": [
+                "_endTime",
+                "_startTime"
+            ]
+        },
+        {
+            "dataSource": {
+                "dataSourceId": "fe927901-de80-4ae7-b39b-c8998558a701",
+                "kind": "inline"
+            },
+            "text": "Sensor\n| where EventEnqueuedUtcTime between (['_startTime'] .. ['_endTime'])\n| extend \n    HumidityNumeric = todouble(humidity),\n    TemperatureNumeric = todouble(temperature)\n| extend\n    HumidityBin = bin(HumidityNumeric, 5),  // Binning by 5% increments\n    TemperatureBin = bin(TemperatureNumeric, 2)  // Binning by 2°C increments\n| extend\n    HumidityLabel = strcat(tostring(HumidityBin), \"% - \", tostring(HumidityBin + 5), \"%\"),\n    TemperatureLabel = strcat(tostring(TemperatureBin), \"°C - \", tostring(TemperatureBin + 2), \"°C\")\n| summarize Count=count() by \n    HumidityLabel,\n    TemperatureLabel\n| project \n    HumidityLabel,\n    TemperatureLabel,\n    Count",
+            "id": "83c84db0-6ad1-4444-af5e-77304b6163b1",
+            "usedVariables": [
+                "_endTime",
+                "_startTime"
+            ]
+        }
+    ]
+}
