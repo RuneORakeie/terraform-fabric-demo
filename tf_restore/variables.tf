@@ -61,3 +61,4 @@ variable "solution_name" {
   type        = string
   default     = "datasatholland"
 }
+
