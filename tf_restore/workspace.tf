@@ -32,4 +32,3 @@ module "demo_ws_prod" {
 #   resource_group_name = "pcs-d-rg-rasberrypi-sim"
 #   provider            = azurerm.vs-studio
 # }
-
