@@ -29,3 +29,4 @@ data "azuread_user" "admin" {
 data "azuread_service_principal" "tf_sp" {
   display_name = "pcs-s-sp-terraform"
 }
+

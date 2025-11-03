@@ -18,3 +18,18 @@ module "demo_ws_prod" {
   ]
 }
 
+
+# resource "fabric_workspace_managed_private_endpoint" "azeventhub" {
+#   workspace_id                    = module.demo_ws_prod.id
+#   name                            = "mpe-azeventhub-demo"
+#   target_private_link_resource_id = data.azurerm_eventhub_namespace.demo.id
+#   target_subresource_type         = "namespace"
+#   request_message                 = "Request message to approve private endpoint"
+# }
+
+# data "azurerm_eventhub_namespace" "demo" {
+#   name                = "raspberrypi-sim-weu"
+#   resource_group_name = "pcs-d-rg-rasberrypi-sim"
+#   provider            = azurerm.vs-studio
+# }
+

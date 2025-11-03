@@ -7,6 +7,14 @@ provider "azurerm" {
   use_oidc                        = true
   resource_provider_registrations = "none"
 }
+provider "azurerm" {
+  features {}
+  client_id                       = var.client_id
+  use_oidc                        = true
+  resource_provider_registrations = "none"
+  subscription_id                 = "ad5ccbe8-39bf-494c-8c01-526a0f114b2d"
+  alias                           = "vs-studio"
+}
 #############################################
 #          Azure Active Directory           #
 #############################################

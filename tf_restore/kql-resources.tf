@@ -32,7 +32,7 @@ resource "fabric_kql_database" "kql_demo_db_1" {
 ### KQL EVENTSTREAM  ###
 ########################
 resource "fabric_eventstream" "kql_demo_es" {
-  display_name = "kql-es-${var.solution_name}"
+  display_name = "kql-es-${var.solution_name}3"
   workspace_id = module.demo_ws_prod.id
   format       = "Default"
   definition = {
@@ -45,21 +45,47 @@ resource "fabric_eventstream" "kql_demo_es" {
         "WsId"      = module.demo_ws_prod.id
       }
     }
-    #   "eventstreamProperties.json" = {
-    #     source = "../item-templates/eventstreamProperties.json"
-    #     tokens = {
-    #     }
+    # "eventstreamProperties.json" = {
+    #   source = "../item-templates/eventstreamProperties.json"
+    #   tokens = {
     #   }
+    # }
   }
   depends_on = [module.ws_conn_eventhub, fabric_kql_database.kql_demo_db_1]
 }
+# resource "restapi_object" "kql_demo_es" {
+#   path = "/workspaces/${module.demo_ws_prod.id}/eventstreams"
+
+#   data = jsonencode({
+#     "displayName" : "kql-es-${var.solution_name}3",
+#     "definition" : {
+#       "format" : "eventstream",
+#       "parts" : [
+#         {
+#           "path" : "eventstream.json",
+#           "payload" : filebase64("../item-templates/eventstream_tmpl_values.json"),
+#           "payloadType" : "InlineBase64"
+#         }
+#       ]
+#     }
+#   })
+
+#   read_path     = "/workspaces/${module.demo_ws_prod.id}/eventstreams/{id}"
+#   update_path   = "/workspaces/${module.demo_ws_prod.id}/eventstreams/{id}"
+#   update_method = "PATCH"
+#   destroy_path  = "/workspaces/${module.demo_ws_prod.id}/eventstreams/{id}"
+
+#   debug = true # Enable for troubleshooting
+
+#   depends_on = [module.ws_conn_eventhub, fabric_kql_database.kql_demo_db_1]
+# }
 
 ########################
 ###   KQL DASHBOARD  ###
 ########################
 resource "fabric_kql_dashboard" "kql_demo_dash" {
   display_name = "kql-dash-${var.solution_name}"
-  description  = "kql-dash-${var.solution_name}"
+  #description  = "kql-dash-${var.solution_name}"
   workspace_id = module.demo_ws_prod.id
   format       = "Default"
   definition = {
