@@ -2,7 +2,7 @@
 ### RESOURCE GROUPS ###
 #######################
 data "azurerm_resource_group" "fc_cap_rg" {
-  name = "datarunefabric-weu"
+  name = "datarunefabric-wus"
 }
 #######################
 ### FABRIC CAPACITY ###
@@ -29,3 +29,4 @@ data "azuread_user" "admin" {
 data "azuread_service_principal" "tf_sp" {
   display_name = "pcs-s-sp-terraform"
 }
+

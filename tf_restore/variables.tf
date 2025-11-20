@@ -46,6 +46,12 @@ variable "azeventhub_saskey" {
   # Will read from TF_VAR_azeventhub_saskey environment variable
 
 }
+# variable "azeventhub_connection_string" {
+#   description = "Azure Event Hub connection string with Listen permissions"
+#   type        = string
+#   sensitive   = true
+#   # Will read from TF_VAR_azeventhub_connection_string environment variable
+# }
 variable "azeventhub_namespace" {
   description = "Event Hub Namespace"
   type        = string
@@ -59,6 +65,9 @@ variable "azeventhub_name" {
 variable "solution_name" {
   description = "Name of the solution"
   type        = string
-  default     = "datasatholland"
+  default     = "passdatasummit2025"
 }
+
+
+
 

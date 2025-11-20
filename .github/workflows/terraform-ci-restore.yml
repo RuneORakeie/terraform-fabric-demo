@@ -39,8 +39,8 @@ jobs:
 
     - name: Run TFLint
       run: |
-        tflint --init --config=tflint_config.hcl
-        tflint --chdir=${{ env.WORKING_DIRECTORY }} --minimum-failure-severity=error -f compact
+        tflint --init --config=.tflint.hcl
+        tflint --chdir=${{ env.WORKING_DIRECTORY }} -f compact
    
     # Execute Terraform plan (handles init internally)
     - name: Terraform Plan

@@ -7,9 +7,15 @@ plugin "terraform" {
 }
 plugin "azurerm" {
     enabled = true
-    version = "0.27.0"
+    version = "0.29.0"
     source  = "github.com/terraform-linters/tflint-ruleset-azurerm"
 }
 rule "terraform_required_version" {
     enabled = false
+}
+
+plugin "fabric" {
+    enabled = true
+    version = "0.1.0"
+    source  = "github.com/RuneORakeie/tflint-ruleset-fabric"
 }
