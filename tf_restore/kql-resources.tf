@@ -32,7 +32,7 @@ resource "fabric_kql_database" "kql_demo_db_1" {
 ### KQL EVENTSTREAM  ###
 ########################
 resource "fabric_eventstream" "kql_demo_es" {
-  display_name = "kql-es-${var.solution_name}3"
+  display_name = "kql-es-${var.solution_name}"
   workspace_id = module.demo_ws_prod.id
   format       = "Default"
   definition = {
