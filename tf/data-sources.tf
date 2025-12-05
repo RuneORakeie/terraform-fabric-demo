@@ -2,7 +2,7 @@
 ### RESOURCE GROUPS ###
 #######################
 data "azurerm_resource_group" "fc_cap_rg" {
-  name = "datarunefabric-noe"
+  name = "datarunefabric-swc"
 }
 #######################
 ### FABRIC CAPACITY ###
