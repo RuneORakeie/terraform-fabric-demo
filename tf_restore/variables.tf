@@ -70,4 +70,3 @@ variable "solution_name" {
 
 
 
-
