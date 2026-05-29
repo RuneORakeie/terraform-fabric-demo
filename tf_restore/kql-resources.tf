@@ -95,7 +95,7 @@ resource "fabric_kql_dashboard" "kql_demo_dash" {
         "QuerySvcUri" = fabric_kql_database.kql_demo_db_1.properties.query_service_uri
         "KqlDbId"     = fabric_kql_database.kql_demo_db_1.id
         "WsId"        = module.demo_ws_prod.id
-        "ImgURL"      = "![markdown](https://datarune.online/img/PASS2025-Logo-Dark-Date.png)"
+        "ImgURL"      = "![markdown](https://datarune.online/img/dppr_rti_dash.png)"
       }
     }
   }
