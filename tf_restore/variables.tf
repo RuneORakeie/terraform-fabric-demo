@@ -65,7 +65,7 @@ variable "azeventhub_name" {
 variable "solution_name" {
   description = "Name of the solution"
   type        = string
-  default     = "datapointprague2026"
+  default     = "discoverydaysofia2026"
 }
 
 
